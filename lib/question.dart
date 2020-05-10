@@ -50,7 +50,7 @@ class _QuestionPageState extends State<QuestionPage> {
             stream:
                 Firestore.instance.collection(widget.collection).snapshots(),
             builder: (context, snapshot) {
-              if (!snapshot.hasData) return Text('Loading...');
+              if (!snapshot.hasData) return Center(child: CircularProgressIndicator(),);
               quetion = snapshot.data.documents[dcount]['Qtitle'];
               answerr = snapshot.data.documents[dcount]['Correct Answer'];
               return new Column(children: <Widget>[
@@ -60,12 +60,12 @@ class _QuestionPageState extends State<QuestionPage> {
                     color: Colors.greenAccent,
                     child: new Column(children: <Widget>[
                       Container(
-                          padding: EdgeInsets.only(left: 350, top: 20),
+                          padding: EdgeInsets.only(left: 300, top: 20),
                           child: IconButton(
                               color: Colors.white,
                               iconSize: 30,
-                              padding: EdgeInsets.all(0.0),
-                              alignment: Alignment.topRight,
+                              padding: EdgeInsets.only(right:50.0),
+                              
                               icon: Icon(Icons.bookmark),
                               onPressed: () {
                                 var ref = Firestore.instance
